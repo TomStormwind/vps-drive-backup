@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VPS Drive Backup 的个人使用范围、密钥管理、备份保留与恢复验证说明。">
+  <title>使用说明 · VPS Drive Backup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">VPS Drive Backup</a>
+    <p class="subtitle">个人 VPS 的 Google Drive 备份方案</p>
+    <nav aria-label="主导航"><ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="terms.html" aria-current="page">使用说明</a></li>
+    </ul></nav>
+  </header>
+  <main id="main">
+    <h1>使用说明</h1>
+    <p class="metadata">应用名称：VPS Drive Backup · 更新日期：<time datetime="2026-10-16">2026-10-16</time></p>
+    <p>本方案面向使用者自行管理的个人 VPS 和 Google Drive。当前处于准备阶段，本网站没有启用在线备份或恢复服务。</p>
+
+    <h2>使用范围</h2>
+    <p>仅处理本人有权管理和备份的数据，使用自己的授权账户保存备份。阅读并理解<a href="privacy.html">隐私政策</a>后，再进行 OAuth 授权。不要将客户端配置、刷新令牌、证书私钥或备份文件发布到公开仓库。</p>
+
+    <h2>备份前的准备</h2>
+    <ul>
+      <li>确认备份范围包含配置、必要持久化数据和恢复所需的宿主机依赖。</li>
+      <li>为运行中的数据库采用一致性备份方式，不依赖普通文件复制取得可靠数据库快照。</li>
+      <li>独立安全保管 age 解密私钥，并保留 Google 账户的恢复能力；VPS 仅持有加密公钥。</li>
+      <li>确认本机、VPS 和 Drive 的可用空间，以及备份任务的实际执行结果。</li>
+    </ul>
+
+    <h2>保留和替换备份</h2>
+    <p>计划正常保留最近一份完整且验证成功的备份。生成和上传新版本时允许新旧两份短暂共存，验证成功后再清理旧版本。失败或未完成的上传不能作为成功备份替代旧版本。</p>
+    <p>清理默认将旧文件移入 Drive 垃圾箱，通常在 30 天后由 Google 永久删除，期间仍占空间。本工具不清空整个 Drive 垃圾箱。需要立即永久删除相关文件时，由使用者确认并自行处理。</p>
+
+    <h2>恢复需要验证</h2>
+    <p>准备恢复时，应先校验备份、解密并按恢复说明处理配置和数据库。Docker Compose 是恢复步骤的一部分，目标主机的系统架构、磁盘、端口、网络、镜像可用性和版本兼容性仍需检查。域名解析、防火墙和主机维护任务也可能需要适配。</p>
+    <p>成功上传和校验文件不等于完成恢复验证。应在隔离环境或独立 VPS 上进行实际恢复演练，验证服务、数据和必要维护功能，才认定备份满足自己的恢复需求。本方案不承诺任意主机均可无需调整地恢复。</p>
+
+    <h2>停用和联系</h2>
+    <p>停用时可停止相关任务、删除受保护的本机及 VPS 凭据，并在 <a href="https://myaccount.google.com/connections">Google 账户的第三方连接页面</a>撤销授权。已有云端备份不会随撤销授权自动删除，需另外管理。</p>
+    <p>维护者：<a href="https://github.com/TomStormwind">TomStormwind</a>。OAuth 用户支持邮箱以授权屏幕为准；联系时请勿提供任何秘密。</p>
+    <p class="back-link"><a href="index.html">返回首页</a> · <a href="#main">返回正文顶部</a></p>
+  </main>
+  <footer class="site-footer">
+    <p>维护者：<a href="https://github.com/TomStormwind">TomStormwind</a> · 更新日期：<time datetime="2026-10-16">2026-10-16</time></p>
+    <p><a href="privacy.html">隐私政策</a></p>
+  </footer>
+</body>
+</html>
