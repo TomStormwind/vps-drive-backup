@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VPS Drive Backup 隐私政策：Google Drive 权限、备份数据、凭据保存及撤销和删除方式。">
+  <title>隐私政策 · VPS Drive Backup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">VPS Drive Backup</a>
+    <p class="subtitle">个人 VPS 的 Google Drive 备份方案</p>
+    <nav aria-label="主导航"><ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="privacy.html" aria-current="page">隐私政策</a></li>
+      <li><a href="terms.html">使用说明</a></li>
+    </ul></nav>
+  </header>
+  <main id="main">
+    <h1>隐私政策</h1>
+    <p class="metadata">应用名称：VPS Drive Backup · 更新日期：<time datetime="2026-10-16">2026-10-16</time></p>
+    <div class="notice"><p>本方案目前处于准备阶段。以下说明计划采用的数据处理方式。本静态网站仅提供说明；备份功能由使用者在自己的本机或 VPS 上运行，网站不接收 OAuth 秘密、解密私钥或备份数据。</p></div>
+
+    <h2>1. Google 数据访问范围</h2>
+    <p>应用计划仅申请 <code>https://www.googleapis.com/auth/drive.file</code> 权限，访问应用创建或使用者明确授权的文件，以完成备份上传、下载、校验、列出相关备份以及清理旧备份。应用不扫描整个 Google Drive，不申请读取 Gmail、Google Photos 或其他无关服务的权限。</p>
+    <p>相关文件的名称、ID、大小、时间和可用校验信息可用于确认上传结果及选择恢复版本。</p>
+
+    <h2>2. 备份内容和使用目的</h2>
+    <p>备份可能包含系统及容器配置、数据库中的账号状态、证书私钥和其他运行秘密，仅用于使用者自己的灾难恢复与迁移。需要保密的归档和元数据在上传前使用 age 加密；未加密的校验或索引文件只保留不含秘密的必要校验和恢复信息。这些文件仍保存在使用者的私有 Drive 备份目录中，不公开分享。</p>
+    <p>这些数据不用于广告、出售或模型训练。除按照使用者指令保存到 Google Drive，以及完成该操作所必需的网络传输外，方案不向其他服务共享备份内容。本网站维护者不会通过此网站持有或接收使用者的备份。</p>
+
+    <h2>3. 凭据和密钥保存</h2>
+    <p>OAuth 刷新令牌及客户端配置在使用者授权的本机，以及以后启用备份的 VPS 上，以限制访问权限的文件保存，供 rclone 刷新授权和执行备份。它们不得发布到本网站、公开代码仓库或公开日志中。</p>
+    <p>VPS 只需要 age 加密公钥。age 解密私钥由使用者独立保管，不放在 VPS、公开网站或同一个 Drive 备份目录。丢失私钥可能导致无法解密备份，因此使用者应另外安全备份私钥。</p>
+
+    <h2>4. 保存期限和删除</h2>
+    <p>正常仅保留最近一份完整且验证成功的备份。替换期间允许新旧备份短暂共存，旧备份在新备份验证成功后才被清理。旧文件默认移入 Google Drive 垃圾箱，通常由 Google 在 30 天后永久删除；垃圾箱中的文件仍占用存储空间。本工具不清空整个 Drive 垃圾箱。</p>
+    <p>使用者可以自行删除 Drive 中的备份，并决定是否永久删除其垃圾箱中的相关文件。使用者还应自行管理和删除本机的备份副本、下载文件及凭据。</p>
+
+    <h2>5. 撤销授权与停止备份</h2>
+    <p>使用者可以在 <a href="https://myaccount.google.com/connections">Google 账户的第三方连接页面</a>撤销 VPS Drive Backup 的授权，并停用备份任务、删除本机及 VPS 上的相关 OAuth 配置。撤销授权不会自动删除已经上传的备份，云端文件需要另外删除。</p>
+
+    <h2>6. 静态网站托管</h2>
+    <p>本网站不包含跟踪脚本、登录表单或备份上传接口。网站由 GitHub Pages 托管，GitHub 可能根据其政策处理访问日志等信息，详情见 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>。</p>
+
+    <h2>7. 联系方式</h2>
+    <p>维护者为 <a href="https://github.com/TomStormwind">TomStormwind</a>。可通过该 GitHub 账户页面联系维护者；OAuth 用户支持邮箱以 Google 授权屏幕显示的信息为准。请勿在公开渠道发送令牌、私钥或备份文件。</p>
+    <p class="back-link"><a href="index.html">返回首页</a> · <a href="#main">返回正文顶部</a></p>
+  </main>
+  <footer class="site-footer">
+    <p>维护者：<a href="https://github.com/TomStormwind">TomStormwind</a> · 更新日期：<time datetime="2026-10-16">2026-10-16</time></p>
+    <p><a href="terms.html">使用说明</a></p>
+  </footer>
+</body>
+</html>
