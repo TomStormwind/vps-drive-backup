@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VPS Drive Backup 的用途、Google Drive 权限与个人备份方案说明。">
+  <title>VPS Drive Backup · 首页</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">VPS Drive Backup</a>
+    <p class="subtitle">个人 VPS 的 Google Drive 备份方案</p>
+    <nav aria-label="主导航"><ul>
+      <li><a href="index.html" aria-current="page">首页</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="terms.html">使用说明</a></li>
+    </ul></nav>
+  </header>
+  <main id="main">
+    <h1>VPS Drive Backup</h1>
+    <p class="intro">一套由使用者自行运行的个人 VPS 备份方案，计划使用 rclone 将经 age 加密的备份保存到自己的 Google Drive，并在兼容的新主机上配合 Docker Compose 恢复服务。</p>
+    <div class="notice"><p><strong>当前处于准备阶段。</strong>本网站用于介绍应用和数据处理方式，不提供在线备份服务，不接收 OAuth 凭据、解密私钥或备份文件。实际备份功能在使用者自己的本机或 VPS 上运行。</p></div>
+
+    <h2>计划备份哪些内容</h2>
+    <p>备份范围包括 Docker Compose 配置、必要的持久化数据、证书及恢复所需的宿主机配置。运行中的数据库需要先通过适当接口生成一致性快照，再与配置一起归档。</p>
+    <p>方案计划生成备份元数据、SHA-256 和恢复说明，再使用 age 加密敏感内容，通过 rclone 上传。未加密的校验或索引文件仅包含恢复和校验所需、且不含秘密的信息。这些文件仍保存在使用者的私有 Drive 备份目录中，不公开分享。</p>
+
+    <h2>为什么申请 Google Drive 权限</h2>
+    <p>应用计划仅使用 <code>https://www.googleapis.com/auth/drive.file</code> 权限，访问由应用创建或由使用者明确授权的文件，用于上传、下载、校验备份以及清理旧备份。应用不会扫描整个 Google Drive，也不申请 Gmail 或 Google Photos 的访问权限。</p>
+
+    <h2>保留与恢复</h2>
+    <p>正常仅保留最近一份完整且验证成功的备份。替换时允许新旧备份短暂共存，验证新备份成功后再清理旧备份。旧文件默认进入 Google Drive 垃圾箱，Google 通常在 30 天后永久删除，期间仍占用存储空间；本工具不清空整个 Drive 垃圾箱。</p>
+    <p>恢复需要使用者独立保存的 age 私钥、Google 账户访问能力、可用镜像和兼容目标主机。完成实际恢复演练后，才能确认该备份满足自己的恢复需求。</p>
+
+    <h2>了解数据处理与使用边界</h2>
+    <ul>
+      <li><a href="privacy.html">隐私政策：权限、凭据、数据保存与删除</a></li>
+      <li><a href="terms.html">使用说明：准备事项、恢复验证与个人使用范围</a></li>
+    </ul>
+    <p class="back-link"><a href="#main">返回正文顶部</a></p>
+  </main>
+  <footer class="site-footer">
+    <p>维护者：<a href="https://github.com/TomStormwind">TomStormwind</a> · 更新日期：<time datetime="2026-10-16">2026-10-16</time></p>
+    <p>网站由 GitHub Pages 托管。<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a></p>
+  </footer>
+</body>
+</html>
